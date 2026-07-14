@@ -8,7 +8,7 @@ export const RegisterUser = async (data) => {
 
 // ================== producers  page start ================
 export const GetProducers = async (data) => {
-  const payload = data ? { ...data, naame: data.name, name: undefined } : data;
+  const payload = data;
   return await requests.post(`producers/get-all`, payload);
 };
 export const CreateProducer = async (data) => {
@@ -38,6 +38,9 @@ export const DeleteActor = async (id) => {
 // ================ Movie =====================
 export const GetMovie = async (data) => {
   return await requests.post(`movies/get-all`, data);
+};
+export const GetMovieById = async (id) => {
+  return await requests.get(`movies/${id}`);
 };
 export const CreateMovie = async (formData) => {
   return await requests.post("/movies/", formData);

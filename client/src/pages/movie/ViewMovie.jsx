@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectMovie } from "../../features/movie/moviesSlice";
 import Common from "../../common/common";
+import { GetMovieById } from "../../services/Index";
 import no_flag from "../../assets/no_flag.svg";
 import { Tag } from "antd";
 import "./ViewMovie.css";
@@ -15,9 +16,13 @@ const ViewMovie = () => {
 
   const onLoad = async () => {
     const data = movies.find((m) => m.id == id);
-    if (!data) await fetchMovies();
-    const selected = movies.find((m) => m.id == id);
-    if (selected) setMovie(selected);
+    if (data) {
+      setMovie(data);
+      return;
+    }
+
+    const response = await GetMovieById(id);
+    if (response?.data) setMovie(response.data);
   };
 
   useEffect(() => {

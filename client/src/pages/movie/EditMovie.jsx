@@ -1,6 +1,6 @@
 import Common from "../../common/common";
 import { useState, useEffect } from "react";
-import { CreateMovie, UpdateMovie } from "../../services/Index";
+import { CreateMovie, GetMovieById, UpdateMovie } from "../../services/Index";
 import default_image from "../../assets/default_image.svg";
 import { useSelector } from "react-redux";
 import { selectActor } from "../../features/actor/actorSlice";
@@ -42,8 +42,8 @@ const EditMovie = () => {
     const loadData = async () => {
       let data = movies.find((d) => d.id == id);
       if (!data) {
-        await fetchMovies();
-        data = movies.find((d) => d.id == id);
+        const response = await GetMovieById(id);
+        data = response?.data;
       }
       if (data) {
         setFormData({
@@ -130,7 +130,7 @@ const EditMovie = () => {
       if (res.data.id == id) {
         console.log(res.message || "Movie updated successfully");
         const list = movies.map((d) => (d.id == id ? res.data : d));
-        // updateMovies(list);
+        updateMovies(list);
         navigate(-1);
         showToast({
           message: res.message || "updated successfully",
