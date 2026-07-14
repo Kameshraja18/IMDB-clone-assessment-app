@@ -2,6 +2,9 @@
 
 This repository contains both the frontend (React/Vite) and the backend (Node.js/Express) for the IMDB Clone application.
 
+## Bug Report
+Google Doc: https://docs.google.com/document/d/1kG2egX-82jE9OjZPKgVsTIdDCdaEEE0H/edit?usp=sharing&ouid=101708604472523374755&rtpof=true&sd=true
+
 ## Directory Structure
 
 - `client/` - Frontend application
