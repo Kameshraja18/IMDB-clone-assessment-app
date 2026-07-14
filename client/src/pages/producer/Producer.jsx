@@ -20,10 +20,6 @@ const Producers = ({ viewState, editState, addState }) => {
     Common();
   const { producers = [] } = useSelector(selectProducer);
 
-  useEffect(() => {
-    fetchProducers();
-  });
-
   const filteredProducers = producers.filter((producer) =>
     producer.name?.toLowerCase().includes(filter.name?.toLowerCase() || ""),
   );
@@ -51,6 +47,10 @@ const Producers = ({ viewState, editState, addState }) => {
       console.log(err?.response?.data?.message || "Something went wrong.");
     }
   };
+
+  useEffect(() => {
+    if (!producers.length) fetchProducers({ setLoading });
+  }, []);
 
   const handleSearch = () => {
     setFilter({
