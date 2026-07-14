@@ -1,8 +1,8 @@
 # Candidate Bug Report
 
-**Candidate Name:** [Your Name]  
+**Candidate Name:** [K KAMESHRAJA]  
 **Date:** 2026-07-14  
-**Position:** [Job Title]
+**Position:** [Full Stack Developer intern]
 
 ---
 
