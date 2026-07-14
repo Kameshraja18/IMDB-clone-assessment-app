@@ -1,8 +1,9 @@
+require("./config/config.js");
+
 const app = require("./src/app");
-const { PORT } = require("./config/config.js");
 const db = require("./database/db");
 
-const port = PORT || 3000;
+const port = process.env.PORT || 3000;
 
 console.log("Checking database connection and running migrations...");
 

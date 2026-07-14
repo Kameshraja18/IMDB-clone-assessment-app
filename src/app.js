@@ -12,13 +12,19 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhast:5173",
+    origin: ["http://localhost:5173", "http://localhost:5174"],
     credentials: true,
   }),
 );
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cookieParser());
+
+app.get("/", (req, res) => {
+  res.status(200).send(
+    "<h1>IMDB Clone API is running</h1><p>Open the frontend at <a href='http://localhost:5173'>http://localhost:5173</a> or <a href='http://localhost:5174'>http://localhost:5174</a>.</p>",
+  );
+});
 
 // Use Routes
 app.use("/api/auth", authRoutes);
