@@ -1,12 +1,13 @@
 import axios from "axios";
 
+const apiBaseUrl = import.meta.env.VITE_APP_API_URL || "http://localhost:3000/api";
+
 const instance = axios.create({
-  baseURL: import.meta.env.VITE_APP_API_URL,
+  baseURL: apiBaseUrl,
   timeout: 500000,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
   },
 });
 
@@ -15,7 +16,7 @@ instance.interceptors.request.use(function (config) {
   return {
     ...config,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      ...config.headers,
       Authorization: `Bearer ${token}`,
     },
   };
