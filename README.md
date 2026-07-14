@@ -27,16 +27,16 @@ This repository contains both the frontend (React/Vite) and the backend (Node.js
    npm install
    cd client && npm install && cd ..
    ```
-4. Create the local SQLite database file:
+4. Create the local SQLite database file used by Knex:
    - **Mac/Linux:**
      ```bash
-     touch dev.sqlite3
+       touch database/dev.sqlite3
      ```
    - **Windows (PowerShell):**
      ```powershell
-     New-Item dev.sqlite3 -Type File
+       New-Item database/dev.sqlite3 -ItemType File
      ```
-   *(Or simply create a new empty file named `dev.sqlite3` in the root folder using your code editor).*
+    *(Or simply create a new empty file named `database/dev.sqlite3` in the `database/` folder using your code editor).*
 5. Set up the database schema and mock data:
    ```bash
    npx knex migrate:latest
@@ -47,6 +47,51 @@ This repository contains both the frontend (React/Vite) and the backend (Node.js
    npm run dev
    ```
    The frontend will start at `http://localhost:5173` and the backend at `http://localhost:3000`.
+
+## Environment Configuration
+
+The backend reads environment values from `.env`.
+
+Required values:
+
+- `PORT=3000`
+- `JWT_SECRET=<your-secret>`
+
+Notes:
+
+- The app uses SQLite through Knex, so the active database file is `database/dev.sqlite3`.
+- If you need a local example file, use `.env.example` as the starting point.
+
+## Assumptions
+
+- The app is being evaluated in a local development environment.
+- SQLite is used for persistence; no external database service is required.
+- The backend API runs on port `3000` and the frontend runs on the Vite dev server.
+- Seed data is already available in the repository and can be loaded with the provided seed script.
+
+## Database Scripts and Migrations
+
+Database-related files included in the repository:
+
+- Migrations: `database/migrations/`
+- Seed scripts: `database/seeds/`
+- Local database file: `database/dev.sqlite3`
+
+Useful commands:
+
+```bash
+npx knex migrate:latest
+npm run seed
+```
+
+## Supporting Documentation
+
+Use these files when running or evaluating the project:
+
+- [Candidate Bug Report](Candidate_Bug_Report.md) - summary of the bugs reproduced and fixed during the assessment.
+- [.env.example](.env.example) - sample environment values for local setup.
+- [knexfile.js](knexfile.js) - Knex configuration for the SQLite database.
+- [database/db.js](database/db.js) - backend database bootstrap.
 
 ## Technical Assessment Instructions
 
