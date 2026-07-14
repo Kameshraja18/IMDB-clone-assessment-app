@@ -5,12 +5,18 @@ import "./SearchBar.css";
 
 const SearchBar = ({ searchText, setSearchText, handleSearch, path }) => {
   const { navigate } = Common();
+  const addLabel = path?.includes("movies")
+    ? "Add Movie"
+    : path?.includes("producers")
+      ? "Add Producer"
+      : "Add Actor";
+
   return (
     <div className="search-bar-navbar">
       <button
         className="search-bar-icon-button"
         onClick={() => navigate(path)}
-        title="Add Actor"
+        title={addLabel}
       >
         <IoIosPersonAdd />
       </button>
